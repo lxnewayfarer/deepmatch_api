@@ -1,1 +1,9 @@
 inherit_from: .rubocop_todo.yml
+
+plugins: rubocop-rails
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

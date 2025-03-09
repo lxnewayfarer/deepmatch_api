@@ -13,12 +13,16 @@ module MerchbotBackend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
+    config.assets.paths << Rails.root.join('vendor/stylesheets')
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
     config.hosts << ENV['BACKEND_URL']&.gsub('https://', '')
     config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths += %W[#{config.root}/app]
+
     config.generators do |g|
       g.test_framework :rspec, fixture: false
       g.view_specs      false

@@ -1,0 +1,29 @@
+# frozen_string_literal: true
+
+module TelegramBots
+  module Process
+    class AskForm < ApplicationService
+      include TelegramParamsParser
+
+      attr_reader :user
+
+      def call(user)
+        @user ||= user
+
+        messages = TelegramMessageFactory.call(user.telegram_id, text, ReplyMarkup.new(bot).blank)
+
+        ::SendMessageJob.perform_async(user.bot.token, messages.to_json)
+      end
+
+      private
+
+      def bot
+        @bot ||= user.bot
+      end
+
+      def text
+        MessageTemplate.find_by(slug: 'ask_for_fill_the_form', bot:).text
+      end
+    end
+  end
+end

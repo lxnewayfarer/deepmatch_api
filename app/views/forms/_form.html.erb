@@ -1,0 +1,25 @@
+<%= form_with model: @form, url: forms_path, method: :post, id: "form-submit" do |f| %>
+    <input type="hidden" name="form[id]" value="<%= @form.id %>">
+    <% @form.form_questions.each do |form_question| %>
+      <input type="hidden" name="form[form_answers_attributes][][form_question_id]" value="<%= form_question.id %>">
+      <p class="form_question"><%= form_question.question %></p>
+
+        <% if form_question.kind == "size" %>
+        <!-- Кастомный выбор размера -->
+        <div class="size-selector">
+            <% %w[XXS XS S M L XL XXL XXXL].each do |size| %>
+            <label>
+                <%= f.radio_button :answer, size, class: "size-radio", data: { form_question_id: form_question.id }, name: "form[form_answers_attributes][][answer]" %>
+                <span class="size-box"><%= size %></span>
+            </label>
+            <% end %>
+        </div>
+        <% else %>
+        <!-- Стандартное текстовое поле для других типов вопросов -->
+        <%= f.text_field :answer, **Forms::InputPropertiesBuilder.call(form_question.kind) %>
+        <% end %>
+
+    <% end %>
+
+    <%= f.submit "Отправить", class: "submit_button" %>
+<% end %>

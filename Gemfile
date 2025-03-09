@@ -54,7 +54,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'rspec', '~> 3.13'
 end
 
 gem 'aasm', '~> 5.5'
@@ -65,4 +64,30 @@ gem 'dotenv', '~> 3.1'
 
 gem 'pg', '~> 1.5'
 
+gem 'rspec', '~> 3.13'
+
 gem 'enumerize', '~> 2.8'
+
+gem 'rspec-rails', '~> 7.1'
+
+gem 'activeadmin', '~> 3.2'
+
+gem 'devise', '~> 4.9'
+
+gem 'sassc-rails', '~> 2.1'
+
+gem 'sidekiq', '~> 7.3'
+
+gem 'shrine', '~> 3.6'
+
+gem 'image_processing', '~> 1.14'
+
+gem 'rubocop-rails', '~> 2.30'
+
+gem 'rswag', '~> 2.16'
+
+gem 'ostruct', '~> 0.6.1'
+
+gem 'factory_bot_rails'
+
+gem 'pry', '~> 0.15.2'
