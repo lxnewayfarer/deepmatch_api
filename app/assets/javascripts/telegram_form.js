@@ -22,9 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
       method: form.method,
       body: formData,
     })
-      .then((response) => response.json()) // Преобразуем ответ в JSON
-      .then((data) => {
-        if (data.result === "success") {
+      .then((response) => {
+        if (response.ok) {
           // Скрываем форму и показываем сообщение
           tg.close()
         } else {
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch((error) => {
-        console.error("Ошибка при отправке формы:", error);
         alert("Ошибка при отправке формы. Попробуйте снова");
       });
   });
