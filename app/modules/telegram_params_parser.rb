@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module TelegramParamsParser
-  def event
-    @event ||= Event.find_by(bot:, link:)
-  end
-
   def text
     @text ||= params['message']['text']
   end

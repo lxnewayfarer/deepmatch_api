@@ -5,7 +5,12 @@ module Forms
     def call(user:, user_info:, answers_params:, bot:)
       create_answers(answers_params, user)
 
-      TelegramBots::SendMessage.call(bot, user, form_response_message(bot), ReplyMarkup.new(bot).main)
+      TelegramBots::SendMessageTemplate.call(
+        bot:,
+        user:,
+        text: form_response_message(bot),
+        reply_markup: ReplyMarkup.new(bot).main
+      )
       TelegramBots::HideWebAppMenuButton.call(bot, user)
 
       update_user_info(user, user_info)

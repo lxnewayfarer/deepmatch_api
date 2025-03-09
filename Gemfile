@@ -91,3 +91,9 @@ gem 'ostruct', '~> 0.6.1'
 gem 'factory_bot_rails'
 
 gem 'pry', '~> 0.15.2'
+
+gem 'activeadmin_addons', '~> 1.10'
+
+gem 'rubocop-factory_bot', '~> 2.27'
+
+gem 'rubocop-rspec', '~> 3.5'

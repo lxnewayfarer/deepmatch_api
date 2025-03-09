@@ -13,7 +13,7 @@ ActiveAdmin.register MessageTemplate do
       next if message.image_url.blank?
 
       if message.image(:small).blank?
-        message.image_derivatives! # creates derivatives
+        message.image_derivatives!
         message.save
       end
 

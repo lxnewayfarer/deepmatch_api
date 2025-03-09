@@ -47,6 +47,7 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_material (1.5.2)
     activeadmin (3.2.5)
       arbre (~> 1.2, >= 1.2.1)
       csv
@@ -57,6 +58,14 @@ GEM
       kaminari (>= 1.2.1)
       railties (>= 6.1)
       ransack (>= 4.0)
+    activeadmin_addons (1.10.2)
+      active_material (~> 1.5)
+      railties
+      redcarpet
+      require_all
+      sassc
+      sassc-rails
+      xdan-datetimepicker-rails (~> 2.5.1)
     activejob (7.2.2.1)
       activesupport (= 7.2.2.1)
       globalid (>= 0.3.6)
@@ -305,11 +314,13 @@ GEM
       i18n
     rdoc (6.12.0)
       psych (>= 4.0.0)
+    redcarpet (3.6.1)
     redis-client (0.23.2)
       connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
+    require_all (3.0.0)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -349,7 +360,7 @@ GEM
     rswag-ui (2.16.0)
       actionpack (>= 5.2, < 8.1)
       railties (>= 5.2, < 8.1)
-    rubocop (1.72.2)
+    rubocop (1.73.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -360,8 +371,11 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.38.0)
+    rubocop-ast (1.38.1)
       parser (>= 3.3.1.0)
+    rubocop-factory_bot (2.27.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     rubocop-minitest (0.37.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1, < 2.0)
@@ -381,6 +395,9 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    rubocop-rspec (3.5.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.3)
       ffi (~> 1.12)
@@ -438,6 +455,9 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xdan-datetimepicker-rails (2.5.4)
+      jquery-rails
+      rails (>= 3.2.16)
     zeitwerk (2.7.2)
 
 PLATFORMS
@@ -454,6 +474,7 @@ PLATFORMS
 DEPENDENCIES
   aasm (~> 5.5)
   activeadmin (~> 3.2)
+  activeadmin_addons (~> 1.10)
   bootsnap
   brakeman
   debug
@@ -474,8 +495,10 @@ DEPENDENCIES
   rspec-rails (~> 7.1)
   rswag (~> 2.16)
   rubocop (~> 1.72)
+  rubocop-factory_bot (~> 2.27)
   rubocop-rails (~> 2.30)
   rubocop-rails-omakase
+  rubocop-rspec (~> 3.5)
   sassc-rails (~> 2.1)
   shrine (~> 3.6)
   sidekiq (~> 7.3)
