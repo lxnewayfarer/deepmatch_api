@@ -31,7 +31,7 @@ class TelegramAPI
       method_name = 'sendPhoto' if message['photo'].present?
 
       resp = @conn.post "#{@telegram_base_url}/#{method_name}" do |req|
-        req.body = to_markdown(mess)
+        req.body = to_markdown(messages)
       end
 
       process_error(resp) if resp.body['ok'] == false
