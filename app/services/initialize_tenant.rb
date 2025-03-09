@@ -8,6 +8,7 @@ class InitializeTenant < ApplicationService
     personalized_notification
     common_notification
     contacts
+    ai_wait_text
   ].freeze
   MESSAGE_SLUGS_WITH_IMAGE = %w[
     personalized_notification
@@ -69,6 +70,10 @@ class InitializeTenant < ApplicationService
     <<~TEXT
       Отлично! Спасибо за ответы. Теперь я смогу подбирать акции и новинки специально для тебя
     TEXT
+  end
+
+  def ai_wait_text
+    '🤖💭 Пожалуйста, подождите'
   end
 
   def personalized_notification

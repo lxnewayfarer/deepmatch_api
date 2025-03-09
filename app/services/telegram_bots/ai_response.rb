@@ -15,12 +15,17 @@ module TelegramBots
       @user ||= user
       @input_text ||= input_text
 
-      messages = TelegramMessageFactory.call(user.telegram_id, text, ReplyMarkup.new(bot).blank)
+      send_wait_text
 
-      ::SendMessageJob.perform_async(user.bot.token, messages.to_json)
+      messages = TelegramMessageFactory.call(user.telegram_id, text, ReplyMarkup.new(bot).blank)
+      ::SendMessageJob.perform_async(bot.token, messages.to_json)
     end
 
     private
+
+    def send_wait_text
+      TelegramBots::SendMessageTemplate.call(bot:, user:, slug: 'ai_wait_text', reply_markup: ReplyMarkup.new(bot).blank)
+    end
 
     def bot
       @bot ||= user.bot

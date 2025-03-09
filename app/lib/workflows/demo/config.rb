@@ -18,7 +18,7 @@ module Workflows
 
         def main_keyboard
           {
-            keyboard: [main_actions.map { |k, _| [text: k] }],
+            keyboard: main_actions.keys.map { |key| [text: key] },
             resize_keyboard: true
           }
         end
