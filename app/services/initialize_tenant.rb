@@ -96,7 +96,7 @@ class InitializeTenant < ApplicationService
   def contacts
     <<~TEXT
       Будем рады сотрудничеству
-      tg: @lxneway
+      tg: @merchbot_support
       email: dolgikh.rey@yandex.ru
     TEXT
   end
