@@ -10,7 +10,7 @@ class Bot < ApplicationRecord
   end
 
   def webhook_url
-    "#{ENV['BACKEND_URL']}/telegram_webhooks/#{id}"
+    "#{ENV['BACKEND_URL']}/api/v1/telegram_webhooks/#{id}"
   end
 
   def active_form
