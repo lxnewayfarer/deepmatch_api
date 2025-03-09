@@ -26,6 +26,16 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
 
+  sidekiq:
+    image: ${REGISTRY_URL}/merchbot-backend:latest
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - uploads:/merchbot_backend/public/uploads
+
 volumes:
   postgres_data:
   uploads:
