@@ -98,4 +98,4 @@ gem 'rubocop-factory_bot', '~> 2.27'
 
 gem 'rubocop-rspec', '~> 3.5'
 
-gem "rollbar", "~> 3.6"
+gem 'rollbar', '~> 3.6'
