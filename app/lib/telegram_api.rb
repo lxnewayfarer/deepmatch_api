@@ -21,7 +21,7 @@ class TelegramAPI
   end
 
   def to_markdown(messages)
-    messages.merge(parse_mode: 'MarkdownV2').to_json.gsub('**', '*')
+    messages.map { _1.merge(parse_mode: 'MarkdownV2').to_json.gsub('**', '*')}
   end
 
   def send_messages(messages)

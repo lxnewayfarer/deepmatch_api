@@ -324,6 +324,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rollbar (3.6.1)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -412,12 +413,6 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    sentry-rails (5.22.4)
-      railties (>= 5.0)
-      sentry-ruby (~> 5.22.4)
-    sentry-ruby (5.22.4)
-      bigdecimal
-      concurrent-ruby (~> 1.0, >= 1.0.2)
     shrine (3.6.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
@@ -497,6 +492,7 @@ DEPENDENCIES
   pry (~> 0.15.2)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
+  rollbar (~> 3.6)
   rspec (~> 3.13)
   rspec-rails (~> 7.1)
   rswag (~> 2.16)
@@ -506,8 +502,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubocop-rspec (~> 3.5)
   sassc-rails (~> 2.1)
-  sentry-rails (~> 5.22)
-  sentry-ruby (~> 5.22)
   shrine (~> 3.6)
   sidekiq (~> 7.3)
   sprockets-rails

@@ -98,6 +98,4 @@ gem 'rubocop-factory_bot', '~> 2.27'
 
 gem 'rubocop-rspec', '~> 3.5'
 
-gem 'sentry-ruby', '~> 5.22'
-
-gem 'sentry-rails', '~> 5.22'
+gem "rollbar", "~> 3.6"
