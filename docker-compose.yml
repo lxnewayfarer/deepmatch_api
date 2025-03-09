@@ -9,7 +9,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    restart: always
+    restart: "no"
     image: ${REGISTRY_URL}/merchbot-backend:latest
     command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=production bundle exec rails db:prepare && RAILS_ENV=production bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
