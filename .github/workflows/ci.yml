@@ -86,6 +86,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
           cd /${{ secrets.VPS_USER }}/merchbot_backend
+          docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
           docker-compose pull
           docker-compose up -d
         EOF
