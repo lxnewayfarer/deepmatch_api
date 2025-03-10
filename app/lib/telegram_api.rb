@@ -20,8 +20,8 @@ class TelegramAPI
     "https://t.me/#{name}?start="
   end
 
-  def to_markdown(message)
-    message.merge(parse_mode: 'Markdown').to_json.gsub('**', '*')
+  def format_message(message)
+    message.to_json.gsub('**', '')
   end
 
   def send_messages(messages)
@@ -31,7 +31,7 @@ class TelegramAPI
       method_name = 'sendPhoto' if message['photo'].present?
 
       resp = @conn.post "#{@telegram_base_url}/#{method_name}" do |req|
-        req.body = to_markdown(message)
+        req.body = format_message(message)
       end
 
       process_error(resp) if resp.body['ok'] == false

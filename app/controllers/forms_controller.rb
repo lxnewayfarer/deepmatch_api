@@ -38,7 +38,7 @@ class FormsController < ApplicationController
   end
 
   def form_params
-    params.require(:form).permit!.to_h.deep_symbolize_keys
+    params.require(:form).permit(:user_telegram_id, :username, :first_name, :last_name, :form_answers_attributes).to_h.deep_symbolize_keys
   end
 
   def form
