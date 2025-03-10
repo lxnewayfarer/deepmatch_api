@@ -5,7 +5,7 @@ module TelegramBots
     def call(bot:, user:, text:, reply_markup:)
       messages = TelegramMessageFactory.call(user.telegram_id, text, reply_markup)
 
-      SendMessageJob.perform_async(bot.token, messages.to_json)
+      ::SendMessageJob.perform_async(bot.token, messages.to_json)
     end
   end
 end

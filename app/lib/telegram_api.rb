@@ -24,6 +24,23 @@ class TelegramAPI
     message.to_json.gsub('**', '')
   end
 
+  def send_photo_multipart(chat_id, temp_file)
+    @conn.request(:multipart)
+    @conn.request(:url_encoded)
+    @conn.headers = {}
+
+    payload = {
+      chat_id:,
+      photo: Faraday::UploadIO.new(temp_file, 'image/png')
+    }
+
+    resp = @conn.post("#{@telegram_base_url}/sendPhoto", payload)
+    temp_file.close
+    temp_file.unlink
+
+    process_error(resp) if resp.body['ok'] == false
+  end
+
   def send_messages(messages)
     messages.each do |message|
       method_name = 'sendMessage'

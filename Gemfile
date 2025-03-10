@@ -99,3 +99,7 @@ gem 'rubocop-factory_bot', '~> 2.27'
 gem 'rubocop-rspec', '~> 3.5'
 
 gem 'rollbar', '~> 3.6'
+
+gem 'faraday-multipart', '~> 1.1'
+
+gem 'rqrcode', '~> 2.2'
