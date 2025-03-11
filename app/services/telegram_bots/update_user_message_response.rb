@@ -4,7 +4,7 @@ module TelegramBots
   class UpdateUserMessageResponse < ApplicationService
     REDIS_KEY_PREFIX = 'user_message_response'
 
-    def call(user:, response:, ai_generated_response:)
+    def call(user:, response:, ai_generated_response: false)
       message_id = REDIS.get(key(user))
 
       return if message_id.nil?
