@@ -9,13 +9,17 @@ module Workflows
         def call(user)
           @user ||= user
 
-          TelegramBots::SendQrCode.call(user:, data:)
+          TelegramBots::SendQrCode.call(user:, data:, text:)
         end
 
         private
 
         def data
           'https://t.me/DemoInFlowBot'
+        end
+
+        def text
+          MessageTemplate.find_by(slug: 'loyalty_system', bot: user.bot).text
         end
       end
     end

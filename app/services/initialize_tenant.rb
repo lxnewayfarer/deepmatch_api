@@ -21,6 +21,7 @@ class InitializeTenant < ApplicationService
 
     bot = Bot.find_by(telegram_name:)
     bot = Bot.create!(tenant: tenant.reload, telegram_name:, token:, config_slug:, ai_context:) if bot.blank?
+    TelegramBots::SetBotWebhook.call(bot)
 
     form = Form.find_by(title: 'Демо анкета InFlowBot', bot:)
 
@@ -64,6 +65,13 @@ class InitializeTenant < ApplicationService
     <<~TEXT
       Пожалуйста, заполните форму, чтобы мы могли начать
       👇
+    TEXT
+  end
+
+  def loyalty_system
+    <<~TEXT
+      Ваша карта лояльности: 23823923
+      Баланс: 3800 бонусов
     TEXT
   end
 

@@ -2,8 +2,8 @@
 
 module TelegramBots
   class SendQrCode < ApplicationService
-    def call(user:, data:)
-      ::SendQrCodeJob.perform_async(user.bot.token, user.telegram_id, data)
+    def call(user:, data:, text:)
+      ::SendQrCodeJob.perform_async(user.bot.token, user.telegram_id, data, text)
     end
   end
 end

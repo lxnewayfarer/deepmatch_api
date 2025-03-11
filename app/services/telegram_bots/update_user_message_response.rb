@@ -9,7 +9,17 @@ module TelegramBots
 
       return if message_id.nil?
 
-      Message.find(message_id).update!(response:, ai_generated_response:)
+      message = Message.find(message_id)
+
+      message.update!(response: concat_responses(message, response), ai_generated_response:)
+    end
+
+    private
+
+    def concat_responses(message, response)
+      return response if message.response.blank?
+
+      "#{message.response}\n#{response}"
     end
 
     def key(user)
