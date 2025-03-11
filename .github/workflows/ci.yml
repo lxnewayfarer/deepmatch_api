@@ -55,7 +55,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.REGISTRY_URL }}/merchbot-backend:latest
+        tags: ${{ secrets.REGISTRY_URL }}/inflowbot-backend:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -72,11 +72,11 @@ jobs:
         ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
     - name: Copy docker-compose.yml to VPS
-      run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/${{ secrets.VPS_USER }}/merchbot_backend/
+      run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/${{ secrets.VPS_USER }}/inflowbot-backend/
 
     - name: Create .env file on VPS
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo '${{ secrets.ENV_FILE }}' > /${{ secrets.VPS_USER }}/merchbot_backend/.env"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo '${{ secrets.ENV_FILE }}' > /${{ secrets.VPS_USER }}/inflowbot-backend/.env"
   
   post-deploy:
     runs-on: ubuntu-latest
@@ -101,7 +101,7 @@ jobs:
     - name: Deploy to VPS
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd /${{ secrets.VPS_USER }}/merchbot_backend
+          cd /${{ secrets.VPS_USER }}/inflowbot-backend
           docker-compose pull
           docker-compose up -d
           docker rmi $(docker images --filter "dangling=true" -q --no-trunc)

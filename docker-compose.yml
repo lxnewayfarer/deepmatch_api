@@ -10,10 +10,10 @@ services:
 
   app:
     restart: "no"
-    image: ${REGISTRY_URL}/merchbot-backend:latest
+    image: ${REGISTRY_URL}/inflowbot-backend:latest
     command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=production bundle exec rails db:prepare && RAILS_ENV=production bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - uploads:/merchbot_backend/public/uploads
+      - uploads:/inflowbot-backend/public/uploads
     env_file: .env
     ports:
       - "127.0.0.1:3000:3000"
@@ -27,14 +27,14 @@ services:
       - "127.0.0.1:6379:6379"
 
   sidekiq:
-    image: ${REGISTRY_URL}/merchbot-backend:latest
+    image: ${REGISTRY_URL}/inflowbot-backend:latest
     command: bundle exec sidekiq -C config/sidekiq.yml
     env_file: .env
     depends_on:
       - postgres
       - redis
     volumes:
-      - uploads:/merchbot_backend/public/uploads
+      - uploads:/inflowbot-backend/public/uploads
 
 volumes:
   postgres_data:
