@@ -10,8 +10,9 @@ module Workflows
 
         def main_actions
           {
-            'Отправить пример общей рассылки' => 'common_notification',
-            'Отправить пример персонализированной рассылки' => 'personalized_notification',
+            'Пример общей рассылки' => 'common_notification',
+            'Пример персонализированной рассылки' => 'personalized_notification',
+            'Пример системы лояльности' => 'loyalty_system',
             'Контакты' => 'contact'
           }
         end
