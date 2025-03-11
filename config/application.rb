@@ -27,6 +27,8 @@ module InFlowBotBackend
       g.test_framework :rspec, fixture: false
       g.view_specs      false
       g.helper_specs    false
+
+      g.orm :active_record, primary_key_type: :uuid
     end
     # Configuration for the application, engines, and railties goes here.
     #

@@ -11,9 +11,7 @@ module TelegramBots
       @photo_url = photo_url
       @params = params
 
-      messages = TelegramMessageFactory.call(user.telegram_id, text, reply_markup, photo)
-
-      SendMessageJob.perform_async(bot.token, messages.to_json)
+      TelegramBots::SendMessage.call(bot:, user:, text:, reply_markup:, photo:)
     end
 
     private

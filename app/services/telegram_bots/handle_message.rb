@@ -23,7 +23,8 @@ module TelegramBots
     private
 
     def log_message
-      Message.create!(user:, text:)
+      message = Message.create!(user:, text:)
+      ::TelegramBots::SetUserMessageResponse.call(user:, message:)
     end
   end
 end

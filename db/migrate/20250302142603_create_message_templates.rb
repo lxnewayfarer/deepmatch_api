@@ -2,7 +2,7 @@
 
 class CreateMessageTemplates < ActiveRecord::Migration[7.2]
   def change
-    create_table :message_templates do |t|
+    create_table :message_templates, id: :uuid do |t|
       t.string :slug
       t.string :text
       t.references :bot, null: false, foreign_key: true, type: :uuid

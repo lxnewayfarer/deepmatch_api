@@ -12,9 +12,8 @@ module TelegramBots
 
         return unless user.may_start?
 
-        messages = TelegramMessageFactory.call(user.telegram_id, text, ReplyMarkup.new(bot).blank)
+        TelegramBots::SendMessage.call(user:, bot:, text:, reply_markup: ReplyMarkup.new(bot).blank)
 
-        ::SendMessageJob.perform_async(user.bot.token, messages.to_json)
         ::TelegramBots::SetWebAppMenuButton.call(bot, user, bot.active_form)
 
         user.start!

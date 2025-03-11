@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_09_204909) do
     t.index ["bot_id"], name: "index_forms_on_bot_id"
   end
 
-  create_table "message_templates", force: :cascade do |t|
+  create_table "message_templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "slug"
     t.string "text"
     t.uuid "bot_id", null: false
@@ -95,8 +95,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_09_204909) do
     t.index ["bot_id"], name: "index_message_templates_on_bot_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.string "text"
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "text"
+    t.text "response"
+    t.boolean "ai_generated_response", default: false, null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

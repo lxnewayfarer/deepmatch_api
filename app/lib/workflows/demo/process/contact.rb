@@ -9,9 +9,7 @@ module Workflows
         def call(user)
           @user ||= user
 
-          messages = TelegramMessageFactory.call(user.telegram_id, text, ReplyMarkup.new(bot).blank)
-
-          ::SendMessageJob.perform_async(user.bot.token, messages.to_json)
+          TelegramBots::SendMessage.call(user:, bot:, text:, reply_markup: ReplyMarkup.new(bot).blank)
         end
 
         private

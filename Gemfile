@@ -103,3 +103,5 @@ gem 'rollbar', '~> 3.6'
 gem 'faraday-multipart', '~> 1.1'
 
 gem 'rqrcode', '~> 2.2'
+
+gem 'redis', '~> 5.4'

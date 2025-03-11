@@ -8,7 +8,7 @@ module Forms
       TelegramBots::SendMessageTemplate.call(
         bot:,
         user:,
-        text: form_response_message(bot),
+        slug: 'form_completed_successfully',
         reply_markup: ReplyMarkup.new(bot).main
       )
       TelegramBots::HideWebAppMenuButton.call(bot, user)
@@ -17,10 +17,6 @@ module Forms
     end
 
     private
-
-    def form_response_message(bot)
-      MessageTemplate.find_by!(slug: 'form_completed_successfully', bot:).text
-    end
 
     def create_answers(answers_params, user)
       answers_params.each do |attrs|
