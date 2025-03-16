@@ -2,7 +2,7 @@
 
 module WithConfig
   def config
-    "Workflows::#{bot.config_slug.classify}::Config".constantize
+    "Workflows::#{bot.config_slug.camelize}::Config".constantize
   end
 
   def workflow_command?
@@ -10,6 +10,6 @@ module WithConfig
   end
 
   def process_workflow
-    "Workflows::#{bot.config_slug.classify}::Process::#{config.actions[text].classify}".constantize.call(user)
+    "Workflows::#{bot.config_slug.camelize}::Process::#{config.actions[text].camelize}".constantize.call(user)
   end
 end

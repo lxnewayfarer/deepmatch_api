@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Workflows
-  module Demo
+  module DemoStore
     module Process
       class CommonNotification < ApplicationService
         def call(user)
@@ -9,7 +9,7 @@ module Workflows
             bot: user.bot,
             user: user,
             slug: 'common_notification',
-            reply_markup: ReplyMarkup.new(user.bot).blank,
+            reply_markup: ReplyMarkup.new(user.bot).main,
             params: {
               merch_title: 'Dr. Martens'
             }

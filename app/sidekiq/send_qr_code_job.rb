@@ -13,7 +13,7 @@ class SendQrCodeJob
     TelegramAPI.new(token).send_photo_multipart(chat_id, temp_file)
     TelegramBots::UpdateUserMessageResponse.call(user:, response: response(text))
 
-    TelegramBots::SendMessage.call(bot:, user:, text:, reply_markup: ReplyMarkup.new(bot).blank)
+    TelegramBots::SendMessage.call(bot:, user:, text:, reply_markup: ReplyMarkup.new(bot).main)
   end
 
   private

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module Workflows
-  module Demo
+  module DemoStore
     class Config
       class << self
         def actions
-          main_actions
+          {
+            '/start' => 'start'
+          }.merge(main_actions)
         end
 
         def main_actions
@@ -13,7 +15,7 @@ module Workflows
             'Пример общей рассылки' => 'common_notification',
             'Пример персонализированной рассылки' => 'personalized_notification',
             'Пример системы лояльности' => 'loyalty_system',
-            'Контакты' => 'contact'
+            'Контакты' => 'contacts'
           }
         end
 

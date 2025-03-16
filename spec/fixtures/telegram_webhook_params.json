@@ -1,0 +1,23 @@
+{
+    "update_id": 111,
+    "message": {
+      "message_id": 1,
+      "from": {
+        "id": 9,
+        "is_bot": false,
+        "first_name": "Alex",
+        "last_name": "Doe",
+        "username": "alexdoe",
+        "language_code": "ru"
+      },
+      "chat": {
+        "id": 9,
+        "first_name": "Alex",
+        "last_name": "Doe",
+        "username": "alexdoe",
+        "type": "private"
+      },
+      "date": 1742125197,
+      "text": "Контакты"
+    }
+  }

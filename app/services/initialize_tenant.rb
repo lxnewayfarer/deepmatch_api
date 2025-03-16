@@ -15,7 +15,7 @@ class InitializeTenant < ApplicationService
     common_notification
   ].freeze
 
-  def call(name: 'Demo InFlowBot', telegram_name: 'DemoInFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo')
+  def call(name: 'Demo InFlowBot', telegram_name: 'DemoInFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo_store')
     tenant = Tenant.find_by(name:)
     tenant = Tenant.create!(name:) if tenant.blank?
 
@@ -70,8 +70,10 @@ class InitializeTenant < ApplicationService
 
   def loyalty_system
     <<~TEXT
-      Ваша карта лояльности: 23823923
+      (Пример карты с QR-кодом)
+      Ваша карта лояльности №823923
       Баланс: 3800 бонусов
+      Текущая скидка - 15%
     TEXT
   end
 

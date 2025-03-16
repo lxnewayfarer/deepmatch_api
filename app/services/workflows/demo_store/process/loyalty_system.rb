@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Workflows
-  module Demo
+  module DemoStore
     module Process
       class LoyaltySystem < ApplicationService
         attr_reader :user

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Workflows
-  module Demo
+  module DemoStore
     module Process
       class PersonalizedNotification < ApplicationService
         attr_reader :user
@@ -13,7 +13,7 @@ module Workflows
             bot: user.bot,
             user: user,
             slug: 'personalized_notification',
-            reply_markup: ReplyMarkup.new(user.bot).blank,
+            reply_markup: ReplyMarkup.new(user.bot).main,
             params: {
               merch_title:,
               size:,

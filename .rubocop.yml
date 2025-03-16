@@ -16,3 +16,6 @@ Metrics/ClassLength:
 
 RSpec/MultipleExpectations:
   Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
