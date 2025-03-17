@@ -105,3 +105,5 @@ gem 'faraday-multipart', '~> 1.1'
 gem 'rqrcode', '~> 2.2'
 
 gem 'redis', '~> 5.4'
+
+gem 'rack-cors', '~> 2.0'

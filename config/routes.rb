@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'telegram_webhooks/:bot_id', to: 'telegram_webhooks#create'
+      resources :demo_requests, only: :create
     end
   end
 
