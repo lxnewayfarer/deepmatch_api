@@ -107,3 +107,5 @@ gem 'rqrcode', '~> 2.2'
 gem 'redis', '~> 5.4'
 
 gem 'rack-cors', '~> 2.0'
+
+gem 'arctic_admin', '~> 4.3'
