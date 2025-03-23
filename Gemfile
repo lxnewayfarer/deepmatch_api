@@ -109,3 +109,9 @@ gem 'redis', '~> 5.4'
 gem 'rack-cors', '~> 2.0'
 
 gem 'arctic_admin', '~> 4.3'
+
+gem 'elasticsearch', '~> 8.17'
+
+gem 'translit', '~> 0.1.5'
+
+gem 'rubocop-rspec_rails', '~> 2.31'
