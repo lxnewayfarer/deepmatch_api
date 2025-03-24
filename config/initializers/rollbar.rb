@@ -11,6 +11,8 @@ Rollbar.configure do |config|
 
   config.async_json_payload = true
 
+  config.use_sidekiq 'queue' => 'default'
+
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
