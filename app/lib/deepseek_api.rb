@@ -17,6 +17,7 @@ class DeepseekAPI
   end
 
   def chat_completions(content, context)
+    raise "F1"
     resp = @conn.post "#{@base_url}/chat/completions" do |req|
       req.body = {
         model: 'deepseek-chat',
