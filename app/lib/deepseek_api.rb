@@ -4,7 +4,7 @@ class DeepseekAPI
   FARADAY_TIMEOUT = 1.second
 
   def initialize(token = nil)
-    @token = token || ENV['DEEPSEEK_TOKEN']
+    @token = token || '123' # ENV['DEEPSEEK_TOKEN']
 
     @base_url = 'https://api.deepseek.com'
     @conn = Faraday.new do |builder|
@@ -16,22 +16,21 @@ class DeepseekAPI
     end
   end
 
-  def chat_completions(_content, _context)
-    raise 'F1'
-    # resp = @conn.post "#{@base_url}/chat/completions" do |req|
-    #   req.body = {
-    #     model: 'deepseek-chat',
-    #     messages: [
-    #       { role: 'system', content: context },
-    #       { role: 'user', content: content }
-    #     ],
-    #     stream: false
-    #   }.to_json
-    # end
+  def chat_completions(content, context)
+    resp = @conn.post "#{@base_url}/chat/completions" do |req|
+      req.body = {
+        model: 'deepseek-chat',
+        messages: [
+          { role: 'system', content: context },
+          { role: 'user', content: content }
+        ],
+        stream: false
+      }.to_json
+    end
 
-    # return 'Упс... Что-то пошло не так' unless resp.success?
+    raise Errors::DeepseekError, resp.body unless resp.success?
 
-    # resp.body['choices'].first['message']['content']
+    resp.body['choices'].first['message']['content']
   rescue StandardError => e
     Rollbar.error(e)
 
