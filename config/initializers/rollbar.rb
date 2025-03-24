@@ -9,6 +9,8 @@ Rollbar.configure do |config|
   # Here we'll disable in 'test' and 'development':
   config.enabled = false if Rails.env.test? || Rails.env.development?
 
+  config.async_json_payload = true
+
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
