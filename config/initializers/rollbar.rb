@@ -9,10 +9,6 @@ Rollbar.configure do |config|
   # Here we'll disable in 'test' and 'development':
   config.enabled = false if Rails.env.test? || Rails.env.development?
 
-  config.async_json_payload = true
-
-  config.use_sidekiq 'queue' => 'default'
-
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
@@ -50,7 +46,8 @@ Rollbar.configure do |config|
   # config.use_sucker_punch
 
   # Enable delayed reporting (using Sidekiq)
-  # config.use_sidekiq
+  config.use_sidekiq
+  config.exception_level_filters = {}
   # You can supply custom Sidekiq options:
   # config.use_sidekiq 'queue' => 'default'
 
