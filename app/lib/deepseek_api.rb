@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeepseekAPI
-  FARADAY_TIMEOUT = 2.seconds
+  FARADAY_TIMEOUT = 15.seconds
 
   def initialize(token = nil)
     @token = token || ENV['DEEPSEEK_TOKEN']
@@ -31,9 +31,5 @@ class DeepseekAPI
     raise Errors::DeepseekError, resp.body unless resp.success?
 
     resp.body['choices'].first['message']['content']
-  rescue StandardError => e
-    Rollbar.error(e)
-
-    'Упс... Что-то пошло не так'
   end
 end
