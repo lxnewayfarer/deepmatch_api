@@ -16,22 +16,22 @@ class DeepseekAPI
     end
   end
 
-  def chat_completions(content, context)
-    raise "F1"
-    resp = @conn.post "#{@base_url}/chat/completions" do |req|
-      req.body = {
-        model: 'deepseek-chat',
-        messages: [
-          { role: 'system', content: context },
-          { role: 'user', content: content }
-        ],
-        stream: false
-      }.to_json
-    end
+  def chat_completions(_content, _context)
+    raise 'F1'
+    # resp = @conn.post "#{@base_url}/chat/completions" do |req|
+    #   req.body = {
+    #     model: 'deepseek-chat',
+    #     messages: [
+    #       { role: 'system', content: context },
+    #       { role: 'user', content: content }
+    #     ],
+    #     stream: false
+    #   }.to_json
+    # end
 
-    return 'Упс... Что-то пошло не так' unless resp.success?
+    # return 'Упс... Что-то пошло не так' unless resp.success?
 
-    resp.body['choices'].first['message']['content']
+    # resp.body['choices'].first['message']['content']
   rescue StandardError => e
     Rollbar.error(e)
 
