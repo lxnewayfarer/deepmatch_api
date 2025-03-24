@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class DeepseekAPI
+  FARADAY_TIMEOUT = 2.seconds
+
   def initialize(token = nil)
     @token = token || ENV['DEEPSEEK_TOKEN']
 
     @base_url = 'https://api.deepseek.com'
     @conn = Faraday.new do |builder|
+      builder.options.timeout = FARADAY_TIMEOUT
       builder.response :json, content_type: /\bjson$/
       builder.adapter Faraday.default_adapter
       builder.headers['Content-Type'] = 'application/json'
