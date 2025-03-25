@@ -6,7 +6,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = 'InFlowBot Backend'
+  config.site_title = 'InFlowBot'
 
   meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
   config.meta_tags = meta_tags_options
@@ -15,7 +15,7 @@ ActiveAdmin.setup do |config|
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  config.site_title_link = 'https://inflowbot.ru/'
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
@@ -347,7 +347,6 @@ ActiveAdmin.setup do |config|
   # By default ActiveAdmin::OrderClause is used for sorting logic
   # You can inherit it with own class and inject it for all resources
   #
-  # config.order_clause = MyOrderClause
 
   # == Webpacker
   #

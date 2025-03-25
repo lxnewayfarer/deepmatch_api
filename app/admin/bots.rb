@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Bot do
-  permit_params :webhook_url, :description, :token, :tenant_id, :telegram_name, :ai_context, :config_slug
+  permit_params :description, :token, :tenant_id, :telegram_name, :ai_context, :config_slug
+
+  index do
+    selectable_column
+    id_column
+    column :telegram_name
+    column :description
+    tag_column :config_slug
+
+    actions
+  end
 
   # Добавляем кастомное действие для установки вебхука
   action_item :set_webhook, only: :show do
