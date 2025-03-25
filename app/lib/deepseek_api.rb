@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeepseekAPI
-  FARADAY_TIMEOUT = 15.seconds
+  FARADAY_TIMEOUT = 20.seconds
 
   def initialize(token = nil)
     @token = token || ENV['DEEPSEEK_TOKEN']

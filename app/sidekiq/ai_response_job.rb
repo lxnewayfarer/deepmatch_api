@@ -14,18 +14,24 @@ class AIResponseJob
     bot = Bot.find(bot_id)
     user = User.find(user_id)
 
-    TelegramBots::SendMessage.call(
-      bot:,
-      user:,
-      text: response(bot, input_text),
-      reply_markup: ReplyMarkup.new(bot).blank,
-      ai_generated_response: true
-    )
+    send_response(bot:, user:, input_text:)
   end
 
   private
 
-  def response(bot, input_text)
-    AI_SERVICES[bot.tenant.ai_provider].call(input_text, bot.ai_context)
+  def send_response(bot:, user:, input_text:)
+    text = AI_SERVICES[bot.tenant.ai_provider].call(input_text, bot.ai_context)
+
+    TelegramBots::SendMessage.call(
+      bot:,
+      user:,
+      text:,
+      reply_markup: ReplyMarkup.new(bot).blank,
+      ai_generated_response: true
+    )
+  rescue StandardError => e
+    Rollbar.error(e)
+
+    TelegramBots::SendMessageTemplate.call(bot:, user:, slug: 'ai_response_error', reply_markup: ReplyMarkup.new(bot).blank)
   end
 end

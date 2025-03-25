@@ -6,6 +6,15 @@ plugins:
   - rubocop-rspec_rails
   - rubocop-factory_bot
 
+Layout/LineLength:
+  Max: 154
+
+Metrics/ParameterLists:
+  Max: 7
+
+Metrics/MethodLength:
+  Max: 25
+
 Metrics/BlockLength:
   Enabled: false
 
@@ -19,4 +28,13 @@ RSpec/MultipleExpectations:
   Max: 5
 
 RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/ExampleLength:
   Enabled: false

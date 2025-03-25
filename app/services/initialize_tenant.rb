@@ -52,6 +52,10 @@ class InitializeTenant < ApplicationService
     TEXT
   end
 
+  def ai_response_error
+    'Упс... Что-то пошло не так'
+  end
+
   def start
     <<~TEXT
       В базовом сценарии нужно заполнить анкету, чтобы получить параметры пользователя для персональных рассылок.
