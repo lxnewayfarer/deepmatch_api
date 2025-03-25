@@ -7,6 +7,7 @@ class AIResponseJob
 
   AI_SERVICES = {
     'demo' => ::AI::DemoResponse,
+    'yandex' => ::AI::YandexCloudResponse,
     'deepseek' => ::AI::DeepseekResponse
   }.freeze
 
