@@ -73,13 +73,13 @@ class TelegramAPI
 
   def process_error(resp)
     if resp.body['error_code'] == 429
-      raise Exceptions::RateLimitError.new(
+      raise Errors::TelegramRateLimitError.new(
         message: resp.body['description'],
         retry_after: RETRY_AFTER
       )
     end
 
-    raise BadRequestError, resp.body
+    raise Errors::BadRequestError, resp.body
   end
 
   def set_webhook(endpoint)

@@ -4,7 +4,7 @@ module Search
   class RefreshIndex < ApplicationService
     def call(items:, index:)
       items.each do |item|
-        ELASTICSEARCH_CLIENT.index(index:, id: item[:id], body: { name: Translit.convert(item[:name], :english) })
+        ELASTICSEARCH_CLIENT.index(index:, id: item[:id], body: { name: Translit.convert(item[:name].downcase, :english) })
       end
 
       ELASTICSEARCH_CLIENT.indices.refresh(index:)
