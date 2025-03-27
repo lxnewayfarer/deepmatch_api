@@ -15,6 +15,8 @@ ActiveAdmin.register Form do
       row :bot
     end
 
+    render(partial: 'preview', form:)
+
     panel '' do
       table_for form.form_questions do
         column :question
