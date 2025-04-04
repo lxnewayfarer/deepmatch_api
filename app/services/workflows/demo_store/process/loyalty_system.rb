@@ -15,7 +15,7 @@ module Workflows
         private
 
         def data
-          'https://t.me/DemoInFlowBot'
+          'https://t.me/DemoNeoFlowBot'
         end
 
         def text

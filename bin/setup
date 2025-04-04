@@ -4,7 +4,7 @@
 require 'fileutils'
 
 APP_ROOT = File.expand_path('..', __dir__)
-APP_NAME = 'inflowbot-backend'
+APP_NAME = 'neoflowbot-backend'
 
 def system!(*args)
   system(*args, exception: true)

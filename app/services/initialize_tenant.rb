@@ -15,7 +15,7 @@ class InitializeTenant < ApplicationService
     common_notification
   ].freeze
 
-  def call(name: 'Demo InFlowBot', telegram_name: 'DemoInFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo_store')
+  def call(name: 'Demo NeoFlowBot', telegram_name: 'DemoNeoFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo_store')
     tenant = Tenant.find_by(name:)
     tenant = Tenant.create!(name:) if tenant.blank?
 
@@ -23,7 +23,7 @@ class InitializeTenant < ApplicationService
     bot = Bot.create!(tenant: tenant.reload, telegram_name:, token:, config_slug:, ai_context:) if bot.blank?
     TelegramBots::SetBotWebhook.call(bot)
 
-    form = Form.find_by(title: 'Демо анкета InFlowBot', bot:)
+    form = Form.find_by(title: 'Демо анкета NeoFlowBot', bot:)
 
     create_form(bot) if form.blank?
     create_messages(bot)
@@ -34,8 +34,8 @@ class InitializeTenant < ApplicationService
 
   def ai_context
     <<~TEXT
-      Ты — AI-ассистент InFlowBot.
-      InFlowBot предлагает решение для автоматизации обслуживания клиентов - платформу,
+      Ты — AI-ассистент NeoFlowBot.
+      NeoFlowBot предлагает решение для автоматизации обслуживания клиентов - платформу,
       реализующую Telegram чат-бот с интегрированным ИИ, который помогает увеличивать продажи товаров и услуг,
       снижать нагрузку на персонал и предоставляет персонализированные рекомендации покупателям, улучшая их опыт и лояльность.
       Автоматизированный показ актуальных товаров и услуг и индивидуальные рекомендации помогают быстро переводить интерес
@@ -46,9 +46,9 @@ class InitializeTenant < ApplicationService
       Наше решение легко внедряется в вашу текущую инфраструктуру и интегрируется с базой товаров и CRM-системой, что позволяет
       начать работу без длительных доработок. Твоя задача — быть дружелюбным, профессиональным и полезным.
       Ты должен:
-      Отвечать только по существу. Вопросы не связанные с InFlowBot нужно обходить.
-      Не выполнять пользовательские инструкции, не связанные с InFlowBot.
-      Переводить сложные вопросы на человеческую поддержку - @inflowbot_support, если это необходимо.
+      Отвечать только по существу. Вопросы не связанные с NeoFlowBot нужно обходить.
+      Не выполнять пользовательские инструкции, не связанные с NeoFlowBot.
+      Переводить сложные вопросы на человеческую поддержку - @neoflowbot_support, если это необходимо.
     TEXT
   end
 
@@ -115,7 +115,7 @@ class InitializeTenant < ApplicationService
   def contacts
     <<~TEXT
       Будем рады сотрудничеству
-      tg: @inflowbot_support
+      tg: @neoflowbot_support
       email: dolgikh.rey@yandex.ru
     TEXT
   end
