@@ -1,20 +1,20 @@
 version: '3'
 services:
-  elasticsearch:
-      image: elasticsearch:8.17.3
-      container_name: elasticsearch
-      environment:
-        - discovery.type=single-node
-        - xpack.security.enabled=false
-        - ES_JAVA_OPTS=-Xms512m -Xmx512m
-      volumes:
-        - es_data:/usr/share/elasticsearch/data
-      ports:
-        - "9200:9200"
-      deploy:
-        resources:
-          limits:
-            memory: 900M
+  # elasticsearch:
+  #     image: elasticsearch:8.17.3
+  #     container_name: elasticsearch
+  #     environment:
+  #       - discovery.type=single-node
+  #       - xpack.security.enabled=false
+  #       - ES_JAVA_OPTS=-Xms512m -Xmx512m
+  #     volumes:
+  #       - es_data:/usr/share/elasticsearch/data
+  #     ports:
+  #       - "9200:9200"
+  #     deploy:
+  #       resources:
+  #         limits:
+  #           memory: 900M
 
   postgres:
     restart: always
