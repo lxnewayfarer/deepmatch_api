@@ -5,6 +5,16 @@ ActiveAdmin.register Form do
 
   permit_params :title, :description, :private_comment, :tenant_id, :bot_id, form_questions_attributes: %i[id question kind slug _destroy]
 
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :url
+    column :button_title
+    column :bot
+    column :description
+  end
+
   show do |form|
     attributes_table do
       row :id

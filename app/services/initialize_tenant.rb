@@ -15,7 +15,7 @@ class InitializeTenant < ApplicationService
     common_notification
   ].freeze
 
-  def call(name: 'Demo NeoFlowBot', telegram_name: 'DemoNeoFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo_store')
+  def call(name: 'NeoFlowBot', telegram_name: 'NeoFlowBot', token: ENV['DEMO_BOT_TOKEN'], config_slug: 'demo_store')
     tenant = Tenant.find_by(name:)
     tenant = Tenant.create!(name:) if tenant.blank?
 
@@ -116,7 +116,7 @@ class InitializeTenant < ApplicationService
     <<~TEXT
       Будем рады сотрудничеству
       tg: @neoflowbot_support
-      email: dolgikh.rey@yandex.ru
+      email: neoflowbot@ya.ru
     TEXT
   end
 

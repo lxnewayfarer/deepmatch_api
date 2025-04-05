@@ -5,4 +5,8 @@ class Form < ApplicationRecord
   belongs_to :bot
 
   accepts_nested_attributes_for :form_questions, allow_destroy: true
+
+  def url
+    "#{ENV['BACKEND_URL']}/forms/#{id}"
+  end
 end

@@ -7,7 +7,7 @@ module TelegramBots
     def call(bot, user, form)
       menu_button = WEB_APP_MENU_BUTTON.merge(
         web_app: {
-          url: "#{ENV['BACKEND_URL']}/forms/#{form.id}"
+          url: form.url
         },
         text: form.button_title
       )
