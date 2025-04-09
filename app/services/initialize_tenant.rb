@@ -11,6 +11,7 @@ class InitializeTenant < ApplicationService
     ai_wait_text
     loyalty_system
     demo_store_description
+    demo_store_description_second
   ].freeze
   MESSAGE_SLUGS_WITH_IMAGE = %w[
     personalized_notification
@@ -30,8 +31,8 @@ class InitializeTenant < ApplicationService
     form = Form.find_by(title: 'Демо анкета NeoFlowBot', bot:)
 
     create_form(bot) if form.blank?
-    # create_messages(bot)
-    # add_images(bot)
+    create_messages(bot)
+    add_images(bot)
   end
 
   private
@@ -172,6 +173,14 @@ class InitializeTenant < ApplicationService
   def demo_store_description
     <<~TEXT
       (Теперь бот будет вести себя как-будто он представляет магазин одежды NeoFlowStore)
+    TEXT
+  end
+
+  def demo_store_description_second
+    <<~TEXT
+      Привет! 👋 Я — виртуальный помощник магазин модной одежды NeoFlowStore.
+      Могу помочь с выбором вещей, подсказать про размеры и акции.
+      Чем могу помочь? 😊
     TEXT
   end
 
