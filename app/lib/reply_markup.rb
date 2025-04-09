@@ -5,7 +5,7 @@ class ReplyMarkup
 
   attr_reader :bot
 
-  def initialize(bot)
+  def initialize(bot = nil)
     @bot = bot
   end
 

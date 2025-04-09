@@ -3,23 +3,13 @@
 module Workflows
   module DemoStore
     module Process
-      class Contacts < ApplicationService
+      class Contacts < WorkflowService
         attr_reader :user
 
         def call(user)
           @user ||= user
 
-          TelegramBots::SendMessageTemplate.call(user:, bot:, slug: 'contacts', reply_markup: ReplyMarkup.new(bot).fetch(keyboard_name))
-        end
-
-        private
-
-        def keyboard_name
-          user.state == 'form_filled' ? 'store' : 'main'
-        end
-
-        def bot
-          @bot ||= user.bot
+          TelegramBots::SendMessageTemplate.call(user:, bot:, slug: 'contacts', reply_markup: reply_markup('main'))
         end
       end
     end

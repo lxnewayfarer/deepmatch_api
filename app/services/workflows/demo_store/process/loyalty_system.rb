@@ -3,7 +3,7 @@
 module Workflows
   module DemoStore
     module Process
-      class LoyaltySystem < ApplicationService
+      class LoyaltySystem < WorkflowService
         attr_reader :user
 
         def call(user)

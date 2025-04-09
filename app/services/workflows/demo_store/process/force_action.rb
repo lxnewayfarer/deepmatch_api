@@ -3,7 +3,7 @@
 module Workflows
   module DemoStore
     module Process
-      class ForceAction < ApplicationService
+      class ForceAction < WorkflowService
         attr_reader :user
 
         def call(user)

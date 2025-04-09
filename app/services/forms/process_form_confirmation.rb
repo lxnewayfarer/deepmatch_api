@@ -29,7 +29,7 @@ module Forms
 
     def update_user_info(user, user_info)
       user.update!(user_info)
-      ::Workflows::DemoStore::ChangeState.call(user:, state: 'form_filled')
+      ::Workflows::DemoStore::ChangeState.call(user:, state: 'store_form_filled')
     end
   end
 end

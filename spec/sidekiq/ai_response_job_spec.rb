@@ -3,13 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe AIResponseJob, type: :job do
-  subject { described_class.new.perform(bot.id, user.id, input_text) }
+  subject { described_class.new.perform(bot.id, user.id, input_text, ai_context) }
 
   let(:tenant) { create(:tenant) }
   let(:bot) { create(:bot, tenant:) }
   let(:user) { create(:user, bot:) }
   let(:input_text) { 'Hello' }
   let(:ai_response) { 'AI generated response' }
+  let(:ai_context) { 'AI context' }
 
   describe '#perform' do
     context 'when AI service responds successfully' do
@@ -21,7 +22,7 @@ RSpec.describe AIResponseJob, type: :job do
       it 'calls the correct AI service' do
         subject
 
-        expect(AI::DemoResponse).to have_received(:call).with(input_text, bot.ai_context)
+        expect(AI::DemoResponse).to have_received(:call).with(input_text, ai_context)
       end
 
       it 'sends message via TelegramBots::SendMessage' do

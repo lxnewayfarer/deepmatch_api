@@ -21,11 +21,11 @@ module TelegramBots
     end
 
     def ai_context_slug
-      user.state == 'form_filled' ? 'store' : 'main'
+      user.state == 'store_form_filled' ? 'store' : 'main'
     end
 
     def keyboard_name
-      user.state == 'form_filled' ? 'store' : 'main'
+      user.state == 'store_form_filled' ? 'store' : 'main'
     end
 
     def bot

@@ -3,7 +3,7 @@
 module Workflows
   module DemoStore
     module Process
-      class PersonalizedNotification < ApplicationService
+      class PersonalizedNotification < WorkflowService
         attr_reader :user
 
         def call(user)
@@ -13,7 +13,7 @@ module Workflows
             bot: user.bot,
             user: user,
             slug: 'personalized_notification',
-            reply_markup: ReplyMarkup.new(user.bot).fetch('store'),
+            reply_markup: reply_markup('store'),
             params: {
               merch_title:,
               size:,

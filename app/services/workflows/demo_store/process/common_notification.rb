@@ -3,13 +3,17 @@
 module Workflows
   module DemoStore
     module Process
-      class CommonNotification < ApplicationService
+      class CommonNotification < WorkflowService
+        attr_reader :user
+
         def call(user)
+          @user = user
+
           ::TelegramBots::SendMessageTemplate.call(
             bot: user.bot,
             user: user,
             slug: 'common_notification',
-            reply_markup: ReplyMarkup.new(user.bot).fetch('store'),
+            reply_markup: reply_markup('store'),
             params: {
               merch_title: 'Dr. Martens'
             }

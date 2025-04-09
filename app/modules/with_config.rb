@@ -10,10 +10,20 @@ module WithConfig
   end
 
   def workflow_command?
-    config.actions.keys.include?(text)
+    allowed_actions.keys.include?(text)
+  end
+
+  def allowed_actions
+    config::STATE_ACTIONS[user.state]
+  end
+
+  def action
+    allowed_actions[text]
   end
 
   def process_workflow
-    "Workflows::#{bot.config_slug.camelize}::Process::#{config.actions[text].camelize}".constantize.call(user)
+    return if action.nil?
+
+    "Workflows::#{bot.config_slug.camelize}::Process::#{action.camelize}".constantize.call(user)
   end
 end
