@@ -13,7 +13,7 @@ module Workflows
             bot: user.bot,
             user: user,
             slug: 'personalized_notification',
-            reply_markup: ReplyMarkup.new(user.bot).main,
+            reply_markup: ReplyMarkup.new(user.bot).fetch('store'),
             params: {
               merch_title:,
               size:,

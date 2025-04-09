@@ -9,17 +9,17 @@ module Workflows
         def call(user)
           @user ||= user
 
-          TelegramBots::SendMessage.call(user:, bot:, text:, reply_markup: ReplyMarkup.new(bot).main)
+          TelegramBots::SendMessageTemplate.call(user:, bot:, slug: 'contacts', reply_markup: ReplyMarkup.new(bot).fetch(keyboard_name))
         end
 
         private
 
-        def bot
-          @bot ||= user.bot
+        def keyboard_name
+          user.state == 'form_filled' ? 'store' : 'main'
         end
 
-        def text
-          MessageTemplate.find_by(slug: 'contacts', bot:).text
+        def bot
+          @bot ||= user.bot
         end
       end
     end

@@ -7,22 +7,24 @@ module Workflows
         def actions
           {
             '/start' => 'start'
-          }.merge(main_actions)
+          }
+            .merge(main_actions)
+            .merge(store_actions)
         end
 
         def main_actions
+          {
+            'Демо магазина одежды' => 'pretend_store',
+            'Контакты' => 'contacts'
+          }
+        end
+
+        def store_actions
           {
             'Пример общей рассылки' => 'common_notification',
             'Пример персонализированной рассылки' => 'personalized_notification',
             'Пример системы лояльности' => 'loyalty_system',
             'Контакты' => 'contacts'
-          }
-        end
-
-        def main_keyboard
-          {
-            keyboard: main_actions.keys.map { |key| [text: key] },
-            resize_keyboard: true
           }
         end
       end

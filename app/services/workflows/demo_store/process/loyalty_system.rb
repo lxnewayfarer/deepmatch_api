@@ -19,7 +19,7 @@ module Workflows
         end
 
         def text
-          MessageTemplate.find_by(slug: 'loyalty_system', bot: user.bot).text
+          MessageTemplate.find_by(slug: 'loyalty_system', bot: user.bot)&.text || 'loyalty_system'
         end
       end
     end

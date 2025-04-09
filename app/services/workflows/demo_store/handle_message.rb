@@ -12,11 +12,11 @@ module Workflows
         @params ||= params
 
         log_message
+        return process_workflow if workflow_command?
 
         return ::Workflows::DemoStore::Process::Start.call(user) if start_command?
-        return ::Workflows::DemoStore::Process::AskForm.call(user) if user.started?
 
-        return process_workflow if workflow_command?
+        return if ::Workflows::DemoStore::Process::ForceAction.call(user)
 
         ::TelegramBots::AIResponse.call(user, text)
       end

@@ -23,8 +23,8 @@ class ReplyMarkup
     { keyboard: [[text:, request_contact: true]], resize_keyboard: true }.to_json
   end
 
-  def main
-    config.main_keyboard.to_json
+  def fetch(name)
+    keyboards.send(name).to_json
   end
 
   def link(text:, url:)

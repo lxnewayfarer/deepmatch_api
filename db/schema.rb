@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_17_124739) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_09_143650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_17_124739) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "ai_contexts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "text"
+    t.uuid "bot_id", null: false
+    t.string "slug", default: "main", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bot_id"], name: "index_ai_contexts_on_bot_id"
   end
 
   create_table "bots", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -126,11 +135,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_17_124739) do
     t.string "first_name"
     t.string "last_name"
     t.string "username"
-    t.string "aasm_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state", default: "initial", null: false
   end
 
+  add_foreign_key "ai_contexts", "bots"
   add_foreign_key "bots", "tenants"
   add_foreign_key "form_answers", "form_questions"
   add_foreign_key "form_answers", "users"

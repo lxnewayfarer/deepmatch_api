@@ -5,6 +5,10 @@ module WithConfig
     "Workflows::#{bot.config_slug.camelize}::Config".constantize
   end
 
+  def keyboards
+    "Workflows::#{bot.config_slug.camelize}::Keyboards".constantize
+  end
+
   def workflow_command?
     config.actions.keys.include?(text)
   end

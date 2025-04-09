@@ -11,17 +11,17 @@ class AIResponseJob
     'deepseek' => ::AI::DeepseekResponse
   }.freeze
 
-  def perform(bot_id, user_id, input_text)
+  def perform(bot_id, user_id, input_text, ai_context)
     bot = Bot.find(bot_id)
     user = User.find(user_id)
 
-    send_response(bot:, user:, input_text:)
+    send_response(bot:, user:, input_text:, ai_context:)
   end
 
   private
 
-  def send_response(bot:, user:, input_text:)
-    text = AI_SERVICES[bot.tenant.ai_provider].call(input_text, bot.ai_context)
+  def send_response(bot:, user:, input_text:, ai_context:)
+    text = AI_SERVICES[bot.tenant.ai_provider].call(input_text, ai_context)
 
     TelegramBots::SendMessage.call(
       bot:,

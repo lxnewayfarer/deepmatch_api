@@ -4,16 +4,15 @@ module Forms
   class ProcessFormConfirmation < ApplicationService
     def call(user:, user_info:, answers_params:, bot:)
       create_answers(answers_params, user)
+      update_user_info(user, user_info)
 
       TelegramBots::SendMessageTemplate.call(
         bot:,
         user:,
         slug: 'form_completed_successfully',
-        reply_markup: ReplyMarkup.new(bot).main
+        reply_markup: ReplyMarkup.new(bot).fetch('store')
       )
       TelegramBots::HideWebAppMenuButton.call(bot, user)
-
-      update_user_info(user, user_info)
     end
 
     private
@@ -30,7 +29,7 @@ module Forms
 
     def update_user_info(user, user_info)
       user.update!(user_info)
-      user.confirm_form!
+      ::Workflows::DemoStore::ChangeState.call(user:, state: 'form_filled')
     end
   end
 end

@@ -9,23 +9,19 @@ module Workflows
         def call(user)
           @user ||= user
 
-          return unless user.may_start?
+          return unless user.state == 'initial'
 
-          TelegramBots::SendMessage.call(user:, bot:, text:, reply_markup: ReplyMarkup.new(bot).blank)
+          TelegramBots::SendMessageTemplate.call(user:, bot:, slug: 'start', reply_markup: ReplyMarkup.new(bot).fetch('main'))
 
-          ::TelegramBots::SetWebAppMenuButton.call(bot, user, bot.active_form)
+          # ::TelegramBots::SetWebAppMenuButton.call(bot, user, bot.active_form)
 
-          user.start!
+          # ::Workflows::DemoStore::ChangeState.call(user:, state: 'started')
         end
 
         private
 
         def bot
           @bot ||= user.bot
-        end
-
-        def text
-          MessageTemplate.find_by(slug: 'start', bot:).text
         end
       end
     end

@@ -5,4 +5,6 @@ module Errors
   class TelegramRateLimitError < StandardError; end
   class BadRequestError < StandardError; end
   class YandexGPTError < StandardError; end
+
+  class UnknownStateError < StandardError; end
 end

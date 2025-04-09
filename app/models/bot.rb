@@ -4,6 +4,7 @@ class Bot < ApplicationRecord
   belongs_to :tenant
   has_many :users, dependent: :destroy
   has_many :forms, dependent: :destroy
+  has_many :ai_contexts, dependent: :destroy
 
   def display_name
     telegram_name

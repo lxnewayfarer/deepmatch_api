@@ -21,10 +21,11 @@ module TelegramBots
     end
 
     def photo
-      photo_url || message_template.full_image_url
+      photo_url || message_template&.full_image_url
     end
 
     def text
+      return slug if message_template.blank?
       return message_template.text % params if params.present?
 
       message_template.text
