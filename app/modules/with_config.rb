@@ -10,7 +10,7 @@ module WithConfig
   end
 
   def workflow_command?
-    allowed_actions.keys.include?(text)
+    allowed_actions&.keys&.include?(text)
   end
 
   def allowed_actions
