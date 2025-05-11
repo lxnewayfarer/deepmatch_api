@@ -9,7 +9,7 @@ module TelegramBots
 
       return if input_text.blank?
 
-      TelegramBots::SendMessageTemplate.call(bot:, user:, slug: 'ai_wait_text', reply_markup: ReplyMarkup.new(bot).fetch(keyboard_name))
+      # TelegramBots::SendMessageTemplate.call(bot:, user:, slug: 'ai_wait_text', reply_markup: ReplyMarkup.new(bot).fetch(keyboard_name))
 
       AIResponseJob.perform_async(bot.id, user.id, input_text, ai_context)
     end

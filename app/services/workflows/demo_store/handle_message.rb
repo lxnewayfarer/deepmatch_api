@@ -12,6 +12,9 @@ module Workflows
         @params ||= params
 
         log_message
+
+        TelegramBots::SendChatTyping.call(bot, user)
+
         return process_workflow if workflow_command?
 
         return if ::Workflows::DemoStore::Process::ForceAction.call(user)

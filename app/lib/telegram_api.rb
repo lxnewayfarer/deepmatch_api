@@ -41,6 +41,14 @@ class TelegramAPI
     process_error(resp) if resp.body['ok'] == false
   end
 
+  def send_chat_action(chat_id:, action: 'typing')
+    resp = @conn.get "#{@telegram_base_url}/sendChatAction" do |req|
+      req.body = { chat_id:, action: }.to_json
+    end
+
+    resp.body
+  end
+
   def send_messages(messages)
     messages.each do |message|
       method_name = 'sendMessage'
