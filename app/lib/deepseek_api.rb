@@ -20,6 +20,7 @@ class DeepseekAPI
     resp = @conn.post "#{@base_url}/chat/completions" do |req|
       req.body = {
         model: 'deepseek-chat',
+        temperature: 0.5,
         messages: [
           { role: 'system', content: context },
           { role: 'user', content: content }
