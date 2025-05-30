@@ -8,7 +8,6 @@ class CreateUsers < ActiveRecord::Migration[7.2]
       t.string :first_name
       t.string :last_name
       t.string :username
-      t.string :aasm_state
 
       t.timestamps
     end

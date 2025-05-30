@@ -4,8 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SendMessageJob, type: :job do
   describe '#perform' do
-    let(:tenant) { create(:tenant) }
-    let(:bot) { create(:bot, tenant:) }
+    let(:bot) { create(:bot) }
     let(:user) { create(:user, bot:) }
 
     let(:token) { 'fake_token' }

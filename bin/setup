@@ -4,7 +4,7 @@
 require 'fileutils'
 
 APP_ROOT = File.expand_path('..', __dir__)
-APP_NAME = 'neoflowbot-backend'
+APP_NAME = 'procrastinator_ai_bot-backend'
 
 def system!(*args)
   system(*args, exception: true)

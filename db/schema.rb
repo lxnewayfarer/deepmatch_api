@@ -54,52 +54,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_09_143650) do
     t.string "webhook_url"
     t.text "description"
     t.string "token", null: false
-    t.uuid "tenant_id", null: false
+    t.string "ai_context", default: "deepseek", null: false
     t.string "telegram_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "config_slug"
-    t.text "ai_context"
-    t.index ["tenant_id"], name: "index_bots_on_tenant_id"
-  end
-
-  create_table "demo_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.string "contact"
-    t.string "company"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "form_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "answer"
-    t.uuid "user_id", null: false
-    t.uuid "form_question_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["form_question_id"], name: "index_form_answers_on_form_question_id"
-    t.index ["user_id"], name: "index_form_answers_on_user_id"
-  end
-
-  create_table "form_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "question"
-    t.string "kind"
-    t.uuid "form_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["form_id"], name: "index_form_questions_on_form_id"
-  end
-
-  create_table "forms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.text "private_comment"
-    t.uuid "bot_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "button_title", default: "Form", null: false
-    t.index ["bot_id"], name: "index_forms_on_bot_id"
   end
 
   create_table "message_templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -122,13 +80,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_09_143650) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "tenants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "ai_provider", default: "demo", null: false
-  end
-
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "telegram_id"
     t.string "bot_id"
@@ -141,11 +92,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_09_143650) do
   end
 
   add_foreign_key "ai_contexts", "bots"
-  add_foreign_key "bots", "tenants"
-  add_foreign_key "form_answers", "form_questions"
-  add_foreign_key "form_answers", "users"
-  add_foreign_key "form_questions", "forms"
-  add_foreign_key "forms", "bots"
   add_foreign_key "message_templates", "bots"
   add_foreign_key "messages", "users"
 end

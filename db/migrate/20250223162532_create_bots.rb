@@ -6,7 +6,7 @@ class CreateBots < ActiveRecord::Migration[7.2]
       t.string :webhook_url
       t.text :description
       t.string :token, null: false
-      t.references :tenant, null: false, foreign_key: true, type: :uuid
+      t.string :ai_context, null: false, default: 'deepseek'
       t.string :telegram_name, null: false
 
       t.timestamps

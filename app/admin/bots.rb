@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Bot do
-  permit_params :description, :token, :tenant_id, :telegram_name, :config_slug
+  permit_params :description, :token, :telegram_name
 
   index do
     selectable_column
     id_column
     column :telegram_name
     column :description
-    tag_column :config_slug
 
     actions
   end
