@@ -4,7 +4,7 @@
 require 'fileutils'
 
 APP_ROOT = File.expand_path('..', __dir__)
-APP_NAME = 'rails_api_template-backend'
+APP_NAME = 'deepmatch-backend'
 
 def system!(*args)
   system(*args, exception: true)

@@ -46,7 +46,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.REGISTRY_URL }}/rails_api_template-backend:latest
+        tags: ${{ secrets.REGISTRY_URL }}/deepmatch-backend:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -65,11 +65,11 @@ jobs:
         ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
     - name: Copy docker-compose.yml to VPS
-      run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/${{ secrets.VPS_USER }}/rails_api_template-backend/
+      run: scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/${{ secrets.VPS_USER }}/deepmatch-backend/
 
     - name: Create .env file on VPS
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo '${{ secrets.ENV_FILE }}' > /${{ secrets.VPS_USER }}/rails_api_template-backend/.env"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "echo '${{ secrets.ENV_FILE }}' > /${{ secrets.VPS_USER }}/deepmatch-backend/.env"
   
   post-deploy:
     runs-on: ubuntu-latest
@@ -94,7 +94,7 @@ jobs:
     - name: Deploy to VPS
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd /${{ secrets.VPS_USER }}/rails_api_template-backend
+          cd /${{ secrets.VPS_USER }}/deepmatch-backend
           docker-compose pull
           docker-compose up -d
           docker images --filter "dangling=true" -q --no-trunc | xargs -r docker rmi

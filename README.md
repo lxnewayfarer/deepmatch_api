@@ -1,3 +1,2 @@
-# rails_api_template
+# deepmatch
 
-API шаблон с настроенными Postgres, Redis, Sidekiq, ActiveAdmin, Rubocop
