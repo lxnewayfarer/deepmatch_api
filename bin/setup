@@ -4,7 +4,7 @@
 require 'fileutils'
 
 APP_ROOT = File.expand_path('..', __dir__)
-APP_NAME = 'procrastinator_ai_bot-backend'
+APP_NAME = 'rails_api_template-backend'
 
 def system!(*args)
   system(*args, exception: true)

@@ -26,10 +26,10 @@ services:
 
   app:
     restart: "no"
-    image: ${REGISTRY_URL}/procrastinator_ai_bot-backend:latest
+    image: ${REGISTRY_URL}/rails_api_template-backend:latest
     command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=production bundle exec rails db:prepare && RAILS_ENV=production bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - uploads:/procrastinator_ai_bot-backend/public/uploads
+      - uploads:/rails_api_template-backend/public/uploads
     env_file: .env
     ports:
       - "127.0.0.1:3000:3000"
@@ -43,14 +43,14 @@ services:
       - "127.0.0.1:6379:6379"
 
   sidekiq:
-    image: ${REGISTRY_URL}/procrastinator_ai_bot-backend:latest
+    image: ${REGISTRY_URL}/rails_api_template-backend:latest
     command: bundle exec sidekiq -C config/sidekiq.yml -e production
     env_file: .env
     depends_on:
       - postgres
       - redis
     volumes:
-      - uploads:/procrastinator_ai_bot-backend/public/uploads
+      - uploads:/rails_api_template-backend/public/uploads
 
 volumes:
   postgres_data:

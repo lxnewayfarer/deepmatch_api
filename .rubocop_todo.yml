@@ -5,16 +5,3 @@
 # one by one as the offenses are removed from the code base.
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
-
-# Offense count: 1
-Naming/AccessorMethodName:
-  Exclude:
-    - 'app/lib/telegram_api.rb'
-
-# Offense count: 1
-# Configuration parameters: Database, Include.
-# SupportedDatabases: mysql, postgresql
-# Include: db/**/*.rb
-Rails/BulkChangeTable:
-  Exclude:
-    - 'db/migrate/20250408140014_add_user_state_to_bots.rb'

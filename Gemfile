@@ -56,8 +56,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 end
 
-gem 'aasm', '~> 5.5'
-
 gem 'faraday', '~> 2.12'
 
 gem 'dotenv', '~> 3.1'
@@ -77,10 +75,6 @@ gem 'devise', '~> 4.9'
 gem 'sassc-rails', '~> 2.1'
 
 gem 'sidekiq', '~> 7.3'
-
-gem 'shrine', '~> 3.6'
-
-gem 'image_processing', '~> 1.14'
 
 gem 'rubocop-rails', '~> 2.30'
 
@@ -109,9 +103,5 @@ gem 'redis', '~> 5.4'
 gem 'rack-cors', '~> 2.0'
 
 gem 'arctic_admin', '~> 4.3'
-
-gem 'elasticsearch', '~> 8.17'
-
-gem 'translit', '~> 0.1.5'
 
 gem 'rubocop-rspec_rails', '~> 2.31'

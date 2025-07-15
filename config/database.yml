@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV.fetch('POSTGRES_DATABASE', 'procrastinator_ai_bot') %>
+  database: <%= ENV.fetch('POSTGRES_DATABASE', 'rails_api_template') %>
   username: <%= ENV.fetch('POSTGRES_USER', 'postgres') %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD', '') %>
   port: <%= ENV.fetch('POSTGRES_PORT', 5432) %>
