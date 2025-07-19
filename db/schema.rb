@@ -42,11 +42,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_15_055807) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "telegram_id"
-    t.string "bot_id"
     t.string "first_name"
     t.string "last_name"
-    t.string "username"
+    t.string "sex"
+    t.date "birthday"
+    t.string "telegram_id"
+    t.string "secret_token"
+    t.datetime "verified_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

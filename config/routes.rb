@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get 'request_auth', to: 'request_auth#index'
+      post 'telegram_webhook', to: 'telegram_webhook#create'
+      post 'verify_auth', to: 'verify_auth#create'
     end
   end
 end

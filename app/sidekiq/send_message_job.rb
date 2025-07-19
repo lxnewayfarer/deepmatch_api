@@ -5,13 +5,11 @@ class SendMessageJob
 
   sidekiq_options retry: false, queue: 'default'
 
-  def perform(token, messages, user_id, response, ai_generated_response)
-    messages = JSON.parse(messages)
+  def perform(messages)
+    token = ENV['TELEGRAM_BOT_TOKEN']
     TelegramAPI.new(token).send_messages(messages)
-
-    TelegramBots::UpdateUserMessageResponse.call(user: User.find(user_id), response:, ai_generated_response:)
   rescue Errors::TelegramRateLimitError => e
-    self.class.perform_in(e.retry_after.to_i, token, messages, user_id, response, ai_generated_response)
+    self.class.perform_in(e.retry_after.to_i, messages)
 
     raise e
   end

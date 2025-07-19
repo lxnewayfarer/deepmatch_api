@@ -105,3 +105,11 @@ gem 'rack-cors', '~> 2.0'
 gem 'arctic_admin', '~> 4.3'
 
 gem 'rubocop-rspec_rails', '~> 2.31'
+
+gem 'dry', '~> 0.0.1'
+
+gem 'dry-matcher', '~> 1.0'
+
+gem 'dry-monads', '~> 1.9'
+
+gem 'jwt', '~> 3.1'
